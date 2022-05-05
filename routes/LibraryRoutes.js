@@ -1,3 +1,4 @@
+const { response } = require("express")
 const express = require("express")
 const { findById } = require("../models/book")
 const app = express()
@@ -38,6 +39,19 @@ app.get("/books/:id", async (request, response) => {
       return response.status(404).send('Book with specified ID does not exists')
     }catch(error) {
     response.status(500).send(error);
+  }
+})
+
+app.delete("/books/:id", async (request, response) => {
+
+  try{
+    const book = await bookModel.findByIdAndDelete(request.params.id)
+    if (book) {
+      return response.status(200).send("Book deleted")
+    }
+    return response.status(404).send("Book with specified ID does not exist")
+  } catch (error){
+    return response.status(500).send(error.message)
   }
 })
 

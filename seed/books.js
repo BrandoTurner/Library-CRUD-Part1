@@ -49,7 +49,7 @@ const main = async () => {
         "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1442169447l/52397._SY475_.jpg",
     },
   ]
-  await BookModel.deleteMany({})
+  //await BookModel.deleteMany({})
   
   await BookModel.insertMany(books)
   console.log("Created Books!")
